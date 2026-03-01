@@ -9,11 +9,7 @@ app.use(cookieParser())
 
 // Robust CORS mirroring for serverless/development
 app.use(cors({
-    origin: (origin, callback) => {
-        // Echo back any origin that makes the request
-        // This handles localhost and multiple Vercel domains seamlessly
-        callback(null, origin || true);
-    },
+    origin: process.env.ORIGIN,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "X-CSRF-Token", "Accept-Version", "Content-Length", "Content-MD5", "Date", "X-Api-Version"]
